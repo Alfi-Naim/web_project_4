@@ -1,32 +1,30 @@
-let profile__name = document.querySelector(".profile__name");
-let profile__about = document.querySelector(".profile__about");
-let popup__form = document.querySelector(".popup__form");
+let profileName = document.querySelector(".profile__name");
+let profileAbout = document.querySelector(".profile__about");
+let popupForm = document.querySelector(".popup__form");
 
 let popup = document.querySelector(".popup");
-let edit_button = document.querySelector(".profile__edit-button");
-let popup__close_icon = document.querySelector(".popup__close-icon");
+let editButton = document.querySelector(".profile__edit-button");
+let popupCloseIcon = document.querySelector(".popup__close-icon");
 
-let popup__input_name = document.querySelectorAll(".popup__input")[0];
-let popup__input_about = document.querySelectorAll(".popup__input")[1];
-
-let popup__button = document.querySelector(".popup__button");
+let popupInputName = document.querySelectorAll(".popup__input")[0];
+let popupInputAbout = document.querySelectorAll(".popup__input")[1];
 
 function popupVisibilityToggle() {
     popup.classList.toggle("popup_opened");
     if(popup.classList.contains("popup_opened")){
-        popup__input_name.value = profile__name.textContent;
-        popup__input_about.value = profile__about.textContent;
+        popupInputName.value = profileName.textContent;
+        popupInputAbout.value = profileAbout.textContent;
     }
 }
 
 function popupSaveChanges(event) {
     event.preventDefault();
-    profile__name.textContent = popup__input_name.value;
-    profile__about.textContent = popup__input_about.value;
+    profileName.textContent = popupInputName.value;
+    profileAbout.textContent = popupInputAbout.value;
     popup.classList.remove("popup_opened");
 }
 
-edit_button.addEventListener("click", popupVisibilityToggle); 
-popup__close_icon.addEventListener("click", popupVisibilityToggle); 
-popup__form.addEventListener("submit", popupSaveChanges);
+editButton.addEventListener("click", popupVisibilityToggle); 
+popupCloseIcon.addEventListener("click", popupVisibilityToggle); 
+popupForm.addEventListener("submit", popupSaveChanges);
 

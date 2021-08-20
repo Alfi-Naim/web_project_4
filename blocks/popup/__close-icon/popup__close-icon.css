@@ -9,7 +9,9 @@
     background-image: url('../../../images/add.svg');
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 40px 40px;
     border: none;
+    cursor: pointer;
 }   
 
 .popup__close-icon:hover {
@@ -21,6 +23,7 @@
     .popup__close-icon {
         width: 26px;
         height: 26px;
+        background-size: 26px 26px;
         right: 0;
     }
 }
