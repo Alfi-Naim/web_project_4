@@ -1,0 +1,12 @@
+@keyframes appear{
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.visibility_appear {
+    animation:appear .7s ease-in-out forwards;
+}

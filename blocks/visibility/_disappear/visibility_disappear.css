@@ -1,0 +1,12 @@
+@keyframes disappear{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.visibility_disappear {
+    animation:disappear .7s ease-in-out forwards;
+}

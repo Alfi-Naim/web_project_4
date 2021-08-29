@@ -30,50 +30,7 @@
             </section>
 
             <section class="elements">
-                <ul class="elements__list">
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="river with tries">
-                        <div class="element__info">
-                            <h2 class="element__text">Yosemite Valley</h2>
-                            <button class="elements__favorite-container" type="button"><img class="element__favorite" src="./images/heart.svg" alt="heart"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="mountains and water">
-                        <div class="element__info">
-                            <h2 class="element__text">Lake Louise</h2>
-                            <button class="elements__favorite-container" type="button"><img class="element__favorite" src="./images/heart.svg" alt="heart"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="sunrise">
-                        <div class="element__info">
-                            <h2 class="element__text">Bald Mountains</h2>
-                            <button class="elements__favorite-container" type="button"><img class="element__favorite" src="./images/heart.svg" alt="heart"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-1404681-unsplash-2.png" alt="mountains at night">
-                        <div class="element__info">
-                            <h2 class="element__text">Latemar</h2>
-                            <button class="elements__favorite-container" type="button"><img class="element__favorite" src="./images/heart.svg" alt="heart"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-1556355-unsplash-2.png" alt="mountains and lake">
-                        <div class="element__info">
-                            <h2 class="element__text">Vanoise National</h2>
-                            <button class="elements__favorite-container" type="button"><img class="element__favorite" src="./images/heart.svg" alt="heart"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/kirill-pershin-1088404-unsplash-2.png" alt="boat in the water">
-                        <div class="element__info">
-                            <h2 class="element__text">Lago di Braies</h2>
-                            <button class="elements__favorite-container" type="button"><img class="element__favorite" src="./images/heart.svg" alt="heart"></button>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="elements__list"></ul>
             </section>
 
         </main>
@@ -84,7 +41,27 @@
 
     </div>
 
-    <div class="popup">
+    <div class="popup popup_type_show">
+        <div class="popup__image-container">
+            <button class="popup__close-icon" type="button"></button>
+            <img src="" alt="" class="popup__image">
+            <p class="popup__description">Description</p>
+        </div>    
+    </div> 
+    
+    <div class="popup popup_type_add">
+        <div class="popup__form-container">
+            <form class="popup__form" name="add-card">
+                <button class="popup__close-icon" type="button"></button>
+                <h2 class="popup__title">New place</h2>
+                <input class="popup__input" type="text" name="name" placeholder="Title" value="">
+                <input class="popup__input" type="text" name="profession" placeholder="Image link" value="">
+                <button class="popup__button" type="submit">Create</button>
+              </form>
+        </div>    
+    </div> 
+
+    <div class="popup popup_type_edit">
         <div class="popup__form-container">
             <form class="popup__form" name="edit-profile">
                 <button class="popup__close-icon" type="button"></button>
@@ -96,7 +73,20 @@
         </div>    
     </div> 
 
-      <script src="./scripts/index.js"></script>
+    <template id="element-template">
+        <li class="element">
+            <img src="./images/trash.svg" alt="" class="element__trash">
+            <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="">
+            <div class="element__info">
+                <h2 class="element__text"></h2>
+                <button class="elements__favorite-container" type="button">
+                    <img class="element__favorite" src="./images/heart.svg" alt="heart">
+                </button>
+            </div>
+        </li>
+    </template>
+
+    <script src="./scripts/index.js"></script>
 
 </body>
 
