@@ -46,9 +46,6 @@ const popupInputUrl = popupAdd.querySelectorAll(".popup__input")[1];
 
 const popupCloseIconShow = popupShow.querySelector(".popup__close-icon");
 
-const elementsList = document.querySelector(".elements__list");
-const elementTemplate = document.querySelector("#element-template").content;
-
 function openModalWindow(modalWindow) {
     modalWindow.classList.add("popup_opened");
 }
@@ -64,78 +61,71 @@ function OpenEditProfilePopup() {
 } 
 
 function OpenAddPlacePopup() {
-    openModalWindow(popupAdd);
+    openModalWindow(popupAdd);  
+    popupInputTitle.value = "";
+    popupInputUrl.value = "";
 }
 
-function saveProfileData(event) {
+function OpenImagePreviewPopup() {
+    openModalWindow(popupShow);  
+    popupInputTitle.value = "";
+    popupInputUrl.value = "";
+    popupShow.querySelector(".popup__image").setAttribute("src", url);
+    popupShow.querySelector(".popup__image").setAttribute("alt", title);
+    popupShow.querySelector(".popup__description").textContent = title;
+}
+
+function popupSaveChanges(event) {
     event.preventDefault();
     profileName.textContent = popupInputName.value;
     profileAbout.textContent = popupInputAbout.value;
-    closeModalWindow(popupEdit);
+    popupEdit.classList.remove("popup_opened");
 }
 
-function saveNewPlace(event) {
-    event.preventDefault();
-    addPlace({name: popupInputTitle.value, link: popupInputUrl.value});
-    popupAdd.classList.remove("popup_opened");
-    popupFormAdd.reset();
-}
+function addPlace(title, url) {
+    const elementsList = document.querySelector(".elements__list");
+    const elementTemplate = document.querySelector("#element-template").content;
+    const element = elementTemplate.querySelector('.element').cloneNode(true);
 
-function toggleFavorite(favorite){
-    favorite.target.classList.toggle("element__favorite_active");
-}
+    element.querySelector(".element__image").setAttribute("src", url);
+    element.querySelector(".element__image").setAttribute("alt", title);
+    element.querySelector(".element__text").textContent = title;
 
-function addPlace(elementData) {
-    let element = elementTemplate.querySelector('.element').cloneNode(true);
-    let image = element.querySelector(".element__image");
-    let favorite = element.querySelector(".element__favorite");
-    
-    element.querySelector(".element__text").textContent = elementData.name;
-
-    image.setAttribute("src", elementData.link);
-    image.setAttribute("alt", elementData.name);
-   
-    favorite.addEventListener("click", toggleFavorite);
+    element.querySelector(".element__favorite").addEventListener("click", function (evt) {
+        evt.target.classList.toggle("element__favorite_active");
+    });
 
     element.querySelector(".element__trash").addEventListener("click", function () {
         element.remove();
-        element = null;
     });
 
     element.querySelector(".element__image").addEventListener("click", function (evt) {
-        OpenImagePreviewPopup(elementData);
+        OpenImagePreviewPopup(title, url);
     });
 
     elementsList.prepend(element);
 }
 
-function OpenImagePreviewPopup(elementData) {
-    openModalWindow(popupShow);
-    popupShow.querySelector(".popup__description").textContent = elementData.name;
-    const image =  popupShow.querySelector(".popup__image");
-    image.setAttribute("src", elementData.link);
-    image.setAttribute("alt", elementData.name);
+function popupAddPlace(event) {
+    event.preventDefault();
+    addPlace(popupInputTitle.value, popupInputUrl.value);
+    popupAdd.classList.remove("popup_opened");
 }
 
+
 initialCards.forEach(element => {
-    addPlace(element);
+    addPlace(element.name, element.link);
 });
 
 editButton.addEventListener("click", OpenEditProfilePopup);
+popupCloseIconEdit.addEventListener("click", closeModalWindow(popupEdit));
+
 addButton.addEventListener("click", OpenAddPlacePopup);
+popupCloseIconAdd.addEventListener("click", closeModalWindow(popupAdd));
 
-popupFormEdit.addEventListener("submit", saveProfileData);
-popupFormAdd.addEventListener("submit", saveNewPlace);
+popupCloseIconShow.addEventListener("click", closeModalWindow(popupShow));
 
-popupCloseIconEdit.addEventListener("click", () => {
-    closeModalWindow(popupEdit);  
-  });
+popupFormEdit.addEventListener("submit", popupSaveChanges);
+popupFormAdd.addEventListener("submit", popupAddPlace);
 
-popupCloseIconAdd.addEventListener("click", () => {
-    closeModalWindow(popupAdd);  
-    popupFormAdd.reset();
-  });
 
-popupCloseIconShow.addEventListener("click", () => {
-    closeModalWindow(popupShow);  
-  });
