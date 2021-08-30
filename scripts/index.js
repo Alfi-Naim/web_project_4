@@ -57,13 +57,13 @@ function closeModalWindow(modalWindow) {
     modalWindow.classList.remove("popup_opened");
 } 
 
-function OpenEditProfilePopup() {
+function openEditProfilePopup() {
     openModalWindow(popupEdit);
     popupInputName.value = profileName.textContent;
     popupInputAbout.value = profileAbout.textContent;
 } 
 
-function OpenAddPlacePopup() {
+function openAddPlacePopup() {
     openModalWindow(popupAdd);
 }
 
@@ -81,8 +81,16 @@ function saveNewPlace(event) {
     popupFormAdd.reset();
 }
 
-function toggleFavorite(favorite){
-    favorite.target.classList.toggle("element__favorite_active");
+function toggleFavorite(evt){
+    evt.target.classList.toggle("element__favorite_active");
+}
+
+function openImagePreviewPopup(elementData) {
+    openModalWindow(popupShow);
+    popupShow.querySelector(".popup__description").textContent = elementData.name;
+    const image =  popupShow.querySelector(".popup__image");
+    image.setAttribute("src", elementData.link);
+    image.setAttribute("alt", elementData.name);
 }
 
 function addPlace(elementData) {
@@ -103,26 +111,18 @@ function addPlace(elementData) {
     });
 
     element.querySelector(".element__image").addEventListener("click", function (evt) {
-        OpenImagePreviewPopup(elementData);
+        openImagePreviewPopup(elementData);
     });
 
     elementsList.prepend(element);
-}
-
-function OpenImagePreviewPopup(elementData) {
-    openModalWindow(popupShow);
-    popupShow.querySelector(".popup__description").textContent = elementData.name;
-    const image =  popupShow.querySelector(".popup__image");
-    image.setAttribute("src", elementData.link);
-    image.setAttribute("alt", elementData.name);
 }
 
 initialCards.forEach(element => {
     addPlace(element);
 });
 
-editButton.addEventListener("click", OpenEditProfilePopup);
-addButton.addEventListener("click", OpenAddPlacePopup);
+editButton.addEventListener("click", openEditProfilePopup);
+addButton.addEventListener("click", openAddPlacePopup);
 
 popupFormEdit.addEventListener("submit", saveProfileData);
 popupFormAdd.addEventListener("submit", saveNewPlace);
