@@ -98,7 +98,7 @@ function toggleFavorite(evt){
 }
 
 function createPlace(elementData) {
-    const element = elementTemplate.querySelector('.element').cloneNode(true);
+    let element = elementTemplate.querySelector('.element').cloneNode(true);
     const image = element.querySelector(".element__image");
     const favorite = element.querySelector(".element__favorite");
     
