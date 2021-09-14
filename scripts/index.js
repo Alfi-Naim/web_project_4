@@ -27,6 +27,8 @@ const popupInputTitle = popupAdd.querySelectorAll(".popup__input")[0];
 const popupInputUrl = popupAdd.querySelectorAll(".popup__input")[1];
 
 const popupCloseIconShow = popupShow.querySelector(".popup__close-icon");
+const popupImageDescription = popupShow.querySelector(".popup__description")
+const popupImage = popupShow.querySelector(".popup__image");
 
 const elementsList = document.querySelector(".elements__list");
 
@@ -53,7 +55,7 @@ function closeModalByEscKey(evt) {
 
 function closeModalByOutsideClick(evt) {
     if(evt.target.classList.contains("popup_opened")){
-        evt.target.classList.remove("popup_opened");
+        closeModalWindow(evt.target);
     }
 } 
 
@@ -72,10 +74,9 @@ function openAddPlacePopup() {
 
 function openImagePreviewPopup(elementData) {
     openModalWindow(popupShow);
-    popupShow.querySelector(".popup__description").textContent = elementData.name;
-    const image =  popupShow.querySelector(".popup__image");
-    image.setAttribute("src", elementData.link);
-    image.setAttribute("alt", elementData.name);
+    popupImageDescription.textContent = elementData.name;
+    popupImage.setAttribute("src", elementData.link);
+    popupImage.setAttribute("alt", elementData.name);
 }
 
 function saveProfileData(event) {
