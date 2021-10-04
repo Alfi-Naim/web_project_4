@@ -1,3 +1,9 @@
+import Card from "./Card.js";
+import FormValidator from './FormValidator.js';
+import { initialCards } from './cards.js';
+
+export { openImagePreviewPopup };
+
 const obj = {
     formSelector: ".popup__form",
     inputSelector: ".popup__input",
@@ -34,6 +40,11 @@ const elementsList = document.querySelector(".elements__list");
 
 const elementTemplate = document.querySelector("#element-template").content;
 
+const formValidatorEdit = new FormValidator(obj, popupFormEdit);
+const formValidatorAdd = new FormValidator(obj, popupFormAdd);
+
+formValidatorEdit.enableValidation();
+formValidatorAdd.enableValidation();
 
 function openModalWindow(modalWindow) {
     modalWindow.classList.add("popup_opened");
@@ -62,13 +73,13 @@ function closeModalByOutsideClick(evt) {
 function openEditProfilePopup() {
     popupInputName.value = profileName.textContent;
     popupInputAbout.value = profileAbout.textContent;
-    resetValidation(popupFormEdit, obj);
+    formValidatorEdit.resetValidation();
     openModalWindow(popupEdit);
 } 
 
 function openAddPlacePopup() {
     popupFormAdd.reset();
-    resetValidation(popupFormAdd, obj);
+    formValidatorAdd.resetValidation();
     openModalWindow(popupAdd);
 }
 
@@ -88,37 +99,9 @@ function saveProfileData(event) {
 
 function saveNewPlace(event) {
     event.preventDefault();
-    const place = createPlace({name: popupInputTitle.value, link: popupInputUrl.value});
-    prependPlace(place);
+    const card = new Card({name: popupInputTitle.value, link: popupInputUrl.value}, elementTemplate);
+    prependPlace(card.generateCard());
     closeModalWindow(popupAdd);
-}
-
-function toggleFavorite(evt){
-    evt.target.classList.toggle("element__favorite_active");
-}
-
-function createPlace(elementData) {
-    let element = elementTemplate.querySelector('.element').cloneNode(true);
-    const image = element.querySelector(".element__image");
-    const favorite = element.querySelector(".element__favorite");
-    
-    element.querySelector(".element__text").textContent = elementData.name;
-
-    image.setAttribute("src", elementData.link);
-    image.setAttribute("alt", elementData.name);
-   
-    favorite.addEventListener("click", toggleFavorite);
-
-    element.querySelector(".element__trash").addEventListener("click", function () {
-        element.remove();
-        element = null;
-    });
-
-    element.querySelector(".element__image").addEventListener("click", function (evt) {
-        openImagePreviewPopup(elementData);
-    });
-
-    return element;
 }
 
 function prependPlace(element){
@@ -126,8 +109,8 @@ function prependPlace(element){
 }
 
 initialCards.forEach(element => {
-    const place = createPlace(element);
-    prependPlace(place);
+    const card = new Card(element, elementTemplate);
+    prependPlace(card.generateCard());
 });
 
 editButton.addEventListener("click", openEditProfilePopup);
