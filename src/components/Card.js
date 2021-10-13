@@ -1,20 +1,15 @@
-import { openImagePreviewPopup } from "./index.js";
-
 export default class Card {
 
-    constructor({name , link}, template){
+    constructor({name , link}, template, handleCardClick){
         this._name = name ;
         this._link = link;
         this.template = template;
+        this.handleCardClick = handleCardClick;
     }
     
     _getTemplate(){
         const cardElement = this.template.querySelector('.element').cloneNode(true);
         return cardElement;
-    }
-
-    _handleImageClick = () => {
-        openImagePreviewPopup({name: this._name, link: this._link});
     }
 
     _handleTrashClick = () => {
@@ -27,7 +22,7 @@ export default class Card {
     }
 
     _setEventListeners() {
-        this._element.querySelector(".element__image").addEventListener("click", this._handleImageClick);
+        this._element.querySelector(".element__image").addEventListener("click", this.handleCardClick);
         this._element.querySelector(".element__trash").addEventListener("click", this._handleTrashClick);
         this._element.querySelector(".element__favorite").addEventListener("click", this._handleHeartClick);
     }
@@ -43,6 +38,5 @@ export default class Card {
         image.setAttribute("alt", this._name);
        
         return this._element;
-
     }
 }

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Around The U.S.</title>
 </head>
 
@@ -14,17 +13,16 @@
     <div class="page-content">
 
         <header class="header">
-            <img class="logo" src="./images/logo-vector.svg" alt="Around the u.s logo">
+            <img class="logo" src="<%=require('./images/logo-vector.svg')%>" alt="Around the u.s logo">
         </header>
 
         <main class="main">
-
             <section class="profile">
-                <img class="profile__image" src="./images/progile-image.jpg" alt="profile image">
+                <img class="profile__image" src="<%=require('./images/progile-image.jpg')%>" alt="profile image">
                 <div class="profile__info">
                     <h1 class="profile__name">Jacques Cousteau</h1>
                     <button class="profile__edit-button" type="button"></button>
-                    <p class="profile__about">Explorer</p>
+                    <p class="profile__job">Explorer</p>
                 </div>
                 <button class="profile__add-button" type="button"></button>
             </section>
@@ -44,7 +42,7 @@
     <div class="popup popup_type_show">
         <div class="popup__image-container">
             <button class="popup__close-icon" type="button"></button>
-            <img src="./images/heart.svg" alt="alt text" class="popup__image">
+            <img src="<%=require('./images/heart.svg')%>" alt="alt text" class="popup__image">
             <p class="popup__description">Description</p>
         </div>
     </div>
@@ -55,11 +53,11 @@
                 <button class="popup__close-icon" type="button"></button>
                 <h2 class="popup__title">New place</h2>
                 <label class="popup__form-field">
-                    <input class="popup__input" type="text" id="title-input" name="title" placeholder="Title" value="" minlength="1" maxlength="30" required>
+                    <input class="popup__input" type="text" id="title-input" name="name" placeholder="Title" value="" minlength="1" maxlength="30" required>
                     <span class="popup__error title-input-error"></span>
                 </label>
                 <label class="popup__form-field">
-                    <input class="popup__input" type="url" id="url-input" name="url" placeholder="Image link" value="" required>
+                    <input class="popup__input" type="url" id="url-input" name="link" placeholder="Image link" value="" required>
                     <span class="popup__error url-input-error"></span>
                 </label>
                 <button class="popup__button" type="submit">Create</button>
@@ -77,8 +75,8 @@
                     <span class="popup__error name-input-error"></span>
                 </label>
                 <label class="popup__form-field">
-                    <input class="popup__input" type="text" id="profession-input" name="profession" placeholder="About me" value="" minlength="2" maxlength="200" required>
-                    <span class="popup__error profession-input-error"></span>
+                    <input class="popup__input" type="text" id="job-input" name="job" placeholder="About me" value="" minlength="2" maxlength="200" required>
+                    <span class="popup__error job-input-error"></span>
                 </label>
                 <button class="popup__button" type="submit">Save</button>
             </form>
@@ -87,18 +85,16 @@
 
     <template id="element-template">
         <li class="element">
-            <img src="./images/trash.svg" alt="" class="element__trash">
-            <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="">
+            <img src="<%=require('./images/trash.svg')%>" alt="" class="element__trash">
+            <img class="element__image" src="#" alt="">
             <div class="element__info">
                 <h2 class="element__text"></h2>
                 <button class="elements__favorite-container" type="button">
-                    <img class="element__favorite" src="./images/heart.svg" alt="heart">
+                    <img class="element__favorite" src="<%=require('.//images/heart.svg')%>" alt="heart">
                 </button>
             </div>
         </li>
     </template>
-
-    <script type="module" src="./scripts/index.js"></script>
 
 </body>
 
