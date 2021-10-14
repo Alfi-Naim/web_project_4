@@ -26,25 +26,24 @@ const userInfo = new UserInfo({name: ".profile__name", job: ".profile__job"});
 
 const showImagePopup = new PopupWithImage(".popup_type_show");
 
-const createCard = (item) => {
+const renderCard = (item) => {
     const card = new Card(item, elementTemplate, () => {
         showImagePopup.open(item);
     });
-    return card;
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement)
 }
 
 const cardList = new Section({
     items: initialCards,
-    renderer: (item) => {
-        cardList.addItem(createCard(item).generateCard());
-    }
+    renderer: renderCard
 }, ".elements__list");
 
 cardList.renderer();
 
 const addPlacePopup = new PopupWithForm(".popup_type_add", (evt) => {
     evt.preventDefault();
-    cardList.addItem(createCard(addPlacePopup.getInputValues()).generateCard());
+    renderCard(addPlacePopup.getInputValues())
     addPlacePopup.close();
 },
 () => {
