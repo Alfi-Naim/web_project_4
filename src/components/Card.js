@@ -26,8 +26,11 @@ export default class Card {
     setLikes(likes) {
         this._likes = likes;
         this._element.querySelector(".element__favorite-count").textContent = this._likes.length;
-        this.isLiked()? this._element.querySelector(".element__favorite").classList.add("element__favorite_active") : this._element.querySelector(".element__favorite").classList.remove("element__favorite_active")
-        this._element.querySelector(".element__favorite-count").textContent = this._likes.length;
+        if(this.isLiked()){
+            this._element.querySelector(".element__favorite").classList.add("element__favorite_active");
+        }else{
+            this._element.querySelector(".element__favorite").classList.remove("element__favorite_active");
+        }
     }
 
     isLiked() {
