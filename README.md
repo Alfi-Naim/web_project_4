@@ -11,7 +11,7 @@
 
 **Pages**
 
-* [Link to the project in github pages](https://alfonsNaim.github.io/web_project_4/)
+* [Link to the project in github pages](https://Alfi-Naim.github.io/web_project_4/)
 
 **Images**
 
