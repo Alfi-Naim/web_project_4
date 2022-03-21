@@ -3,12 +3,14 @@
     height: 24px;
     border: 1px solid #fff;
     background-color: transparent;
+    border-radius: 2px;
     background-image: url('../../../images/edit.svg');
     background-repeat: no-repeat;
     background-position: center;
     align-self: flex-end;
     margin-bottom: 8px;
     cursor: pointer;
+    transition: opacity .3s ease;
 }
 
 .profile__edit-button:hover {
